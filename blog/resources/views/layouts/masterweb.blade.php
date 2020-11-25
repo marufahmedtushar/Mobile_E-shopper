@@ -95,7 +95,7 @@
                 </li>
                 @else
                 <li class="nav-item"><a href="/" class="nav-link {{ '/' == request()->path() ? 'active' : '' }}" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="cart" class="nav-link {{ 'cart' == request()->path() ? 'active' : '' }}" class="nav-link"><i class="fa fa-shopping-cart"></i> My Cart </a>
+                <li class="nav-item"><a href="/cart" class="nav-link {{ 'cart' == request()->path() ? 'active' : '' }}" class="nav-link"><i class="fa fa-shopping-cart"></i> My Cart </a>
                 </li>
                 <li class="nav-item dropdown">
                   <a id="navbarDropdown" class="nav-link {{ 'userprofile' == request()->path() ? 'active' : '' }} dropdown-toggle " href="/userprofile">

@@ -77,20 +77,20 @@
           
           
           
-        
+          @foreach($category as $cat)
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordian" href="#">
+              <a data-toggle="collapse" data-parent="#accordian" href="#{{$cat->name}}">
                 <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-              
+                {{$cat->name}}
               </a>
               </h4>
             </div>
-            <div id="" class="panel-collapse collapse">
+            <div id="{{$cat->name}}" class="panel-collapse collapse">
               <div class="panel-body">
                 <ul>
-                  <li><a href="#"></a></li>
+                  <li><a href="#"></a>{{$cat->name}}</li>
                   <li><a href="#">Guess</a></li>
                   <li><a href="#">Valentino</a></li>
                   <li><a href="#">Dior</a></li>
@@ -99,13 +99,14 @@
               </div>
             </div>
           </div>
-        
+          @endforeach
+          @foreach($category as $cat)
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h4 class="panel-title"><a href=""></a></h4>
+              <h4 class="panel-title"><a href="/categorydetails/{{$cat->id}}">{{$cat->name}}</a></h4>
             </div>
           </div>
-   
+          @endforeach
           
           </div><!--/category-products-->
           
@@ -129,22 +130,30 @@
       <div class="col-sm-9 padding-right">
         <div class="features_items"><!--features_items-->
         <h2 class="title text-center">Features Items</h2>
-       
+        @foreach($products as $product)
         <div class="col-sm-4">
           <div class="product-image-wrapper">
             <div class="single-products">
               <div class="productinfo text-center">
-                <img src="" alt="" style="height: 250px; width: 200px;" />
-                <h2></h2>
-                <a href=""><p></p></a>
-                
-                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                <img src="/storage/cover_images/{{$product->img1}}" alt="" style="height: 250px; width: 200px;" />
+                <h2>{{$product->price}}</h2>
+                <a href="/productdetails/{{$product->id}}"><p>{{$product->name}}</p></a>
+                <form action="/storecart" method="POST">
+              {{ csrf_field() }}
+              {{ method_field('PUT') }}
+                <input type="hidden" class="form-control" name="product_id" value="{{$product->id}}">
+              
+              <button type="submit" class="btn btn-fefault cart">
+              <i class="fa fa-shopping-cart"></i>
+              Add to cart
+              </button>
+            </form>
               </div>
               
             </div>
           </div>
         </div>
-    
+        @endforeach
         <div class="col-sm-4">
           <div class="product-image-wrapper">
             <div class="single-products">
@@ -198,7 +207,7 @@
         
         </div><!--features_items-->
         <div class="container">
-          
+          {{$products->links()}}
         </div>
         
         
