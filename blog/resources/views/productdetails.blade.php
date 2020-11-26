@@ -187,6 +187,7 @@
 					<p><b>First arrival:</b>{{$product->first_arrival}}</p>
 					<p><b>Manufactured By:</b>{{$product->manufacturedby}}</p>
 					<p><b>SIM:</b>{{$product->SIM}}</p>
+					<p><b>Other Features:</b>{{$product->other_features}}</p>
 					<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
 					</div><!--/product-information-->
 				</div>

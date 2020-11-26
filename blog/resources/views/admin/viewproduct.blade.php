@@ -96,6 +96,7 @@
 												<h5>First arrival: <small>{{$product->first_arrival}}</small></h5>
 												<h5>Manufactured By: <small>{{$product->manufacturedby}}</small></h5>
 												<h5>SIM: <small>{{$product->SIM}}</small></h5>
+												<h5>Other Features: <small>{{$product->other_features}}</small></h5>
 											</div>
 										</div>
 									</div>

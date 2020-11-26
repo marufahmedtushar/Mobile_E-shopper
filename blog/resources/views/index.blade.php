@@ -2,6 +2,7 @@
 @section('title','Home | E-Shopper')
 @section('content')
 
+
 <section id="slider"><!--slider-->
 <div class="container">
   <div class="row">

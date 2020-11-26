@@ -95,6 +95,12 @@
                                     <span>Products</span>
                                 </a>
                             </li>
+
+                            <li class="{{ 'setting' == request()->path() ? 'active' : '' }}">
+                                <a class="" href="/setting"><i class="fas fa-cogs"></i>
+                                    <span>Settings</span>
+                                </a>
+                            </li>
                         
                         </ul>
                     </nav>

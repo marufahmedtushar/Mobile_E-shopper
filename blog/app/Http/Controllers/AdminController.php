@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Category;
 use App\Product;
+use App\Setting;
 class AdminController extends Controller
 {
     public function dashboard()
@@ -464,5 +465,31 @@ class AdminController extends Controller
         // toastr()->success('Room Deleted Successfully');
         return back()->with('status','Product Deleted Successfully...');
 
+    }
+
+
+    public function setting()
+    {
+        $settings = Setting::all();
+        return view('admin.setting')->with('settings',$settings);
+
+    }
+
+    public function shippingcoststore(Request $request){
+
+        $this->validate($request,[
+            'shippingcost' => 'required'
+      
+            
+
+        ]);
+
+
+
+        $cost = new Setting();
+        $cost->shipping_cost = $request->input('shippingcost');
+        $cost->save();
+
+        return back()->with('status','Shipping Cost Added...');
     }
 }

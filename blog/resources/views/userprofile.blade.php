@@ -115,7 +115,7 @@
 	    	@endif
 							@endforeach
 
-			
+			</div>
 	</section> <!--/#cart_items-->
 
 	@endsection

@@ -116,4 +116,11 @@ class IndexController extends Controller
         return back()->with('status','Cart is Removed Sucessfully...');
 
     }
+
+    public function checkout()
+    {
+        $cart = Cart::all();
+        $users = User::all();
+        return view('checkout')->with('cart',$cart)->with('users',$users);
+    }
 }

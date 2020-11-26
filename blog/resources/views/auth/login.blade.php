@@ -186,7 +186,14 @@
 
                                 
 
-                                 <input id="gender" type="gender" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" placeholder="Gender" required autocomplete="gender">
+                                 
+
+                                 <select id="gender" type="gender" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" placeholder="Gender" required autocomplete="gender">
+                                       
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Others</option>
+                                    </select>
 
                                 @error('gender')
                                     <span class="invalid-feedback" role="alert">
@@ -194,7 +201,18 @@
                                     </span>
                                 @enderror
 
-                                <input id="division" type="division" class="form-control @error('division') is-invalid @enderror" name="division" value="{{ old('division') }}" placeholder="Division" required autocomplete="Division">
+                               
+
+                                <select id="division" type="division" class="form-control @error('division') is-invalid @enderror" name="division" value="{{ old('division') }}" placeholder="Division" required autocomplete="Division">
+                                        <option>Barisal</option>
+                                        <option>Chittagong</option>
+                                        <option>Dhaka</option>
+                                        <option>Khulna</option>
+                                        <option>Mymensingh</option>
+                                        <option>Rajshahi</option>
+                                        <option>Rangpur</option>
+                                        <option>Sylhet</option>
+                                    </select>
 
                                 @error('division')
                                     <span class="invalid-feedback" role="alert">

@@ -21,10 +21,10 @@ class Cart extends Model
 
     public function totalItems()
     {
-    	if (Auth::check()) {
-    		$carts = Cart::Where('user_id', Auth::id())
+    	
+    		$carts = Cart::where('user_id', Auth::id())
                       ->get();
-    	}
+    	
 
     	$total_items = 0;
 

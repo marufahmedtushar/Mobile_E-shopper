@@ -37,6 +37,11 @@ Route::get('/viewproduct/{id}','AdminController@productdetails');
 Route::get('/editproduct/{id}','AdminController@productedit');
 Route::put('/updateproduct/{profucts}','AdminController@productupdate');
 Route::delete('/deleteproduct/{id}','AdminController@productdelete');
+
+
+Route::get('/setting','AdminController@setting');
+Route::put('/storecost','AdminController@shippingcoststore');
+
 });
 
 
@@ -49,6 +54,9 @@ Route::put('/storecart','IndexController@cartstore');
 Route::get('/cart','IndexController@cart');
 Route::put('/cartupdate/{id}','IndexController@updatecart');
 Route::delete('/cartdelete/{id}','IndexController@deletecart');
+
+
+Route::get('/checkout','IndexController@checkout');
 });
 
 Auth::routes();
