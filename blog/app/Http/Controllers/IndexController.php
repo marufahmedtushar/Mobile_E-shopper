@@ -9,6 +9,8 @@ use App\User;
 use App\Category;
 use App\Product;
 use App\Cart;
+use App\Payment;
+use App\Order;
 class IndexController extends Controller
 {
     public function index()
@@ -104,7 +106,7 @@ class IndexController extends Controller
         $cart = Cart::find($id);
         $cart ->product_quantity = $request->product_quantity;
         $cart->save();
-        return back()->with('status','Cart item has  updated Successfully...');
+        return back()->with('status','Cart item Updated Successfully...');
     }
 
 
@@ -121,6 +123,53 @@ class IndexController extends Controller
     {
         $cart = Cart::all();
         $users = User::all();
-        return view('checkout')->with('cart',$cart)->with('users',$users);
+        $payments = Payment::all();
+        return view('checkout')->with('cart',$cart)->with('users',$users)->with('payments',$payments);
+    }
+
+    public function checkoutstore(Request $request)
+    {
+    	 $this->validate($request,[
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'division' => 'required',
+            'shipping_address' => 'required',
+            'payment_id' => 'required',
+        ]);
+
+
+    	 $order = new Order();
+
+    	 if($request->payment_id != '2'){
+    	 	if ($request->transection_id == NULL || empty($request->transection_id)) {
+    	 		return back()->with('error','pls  give  transection_id...');
+    	 	}
+    	 }
+
+    	 $order-> user_id = Auth::id();
+    	 $order->name = $request->name;
+    	 $order->email = $request->email;
+    	 $order->phone = $request->phone;
+    	 $order->division = $request->division;
+    	 $order->shipping_address = $request->shipping_address;
+    	 $order->payment_id = $request->payment_id;
+    	 $order->total_ammount = $request->total_ammount;
+    	 $order->transaction_id = $request->transection_id;
+    	 $order->product_name = implode(",", $request->product_name);
+    	 $order->product_quantity = implode(",", $request->product_quantity);
+    	 $order->save();
+
+    	 foreach (Cart::first()->totalCarts() as $cart) {
+    	 	$cart->order_id = $order->id;
+    	 	$cart->save();
+    	 }
+
+    	 return redirect('/')->with('status','You Have Successfully Purchese A Product From Our Site.Thank You For Chossing Our Site...');
+
+    	 
+
+
+
     }
 }

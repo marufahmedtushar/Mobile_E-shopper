@@ -8,6 +8,9 @@ use App\User;
 use App\Category;
 use App\Product;
 use App\Setting;
+use App\Payment;
+use App\Order;
+use App\Cart;
 class AdminController extends Controller
 {
     public function dashboard()
@@ -460,6 +463,26 @@ class AdminController extends Controller
     {
 
         $products = Product::findOrFail($request->product_id);
+        if($products->img1 != 'null'){
+            // Delete Image
+            Storage::delete('public/cover_images/'.$products->img1);
+        }
+        if($products->img2 != 'null'){
+            // Delete Image
+            Storage::delete('public/cover_images/'.$products->img2);
+        }
+        if($products->img3 != 'null'){
+            // Delete Image
+            Storage::delete('public/cover_images/'.$products->img3);
+        }
+        if($products->img4 != 'null'){
+            // Delete Image
+            Storage::delete('public/cover_images/'.$products->img4);
+        }
+        if($products->img5 != 'null'){
+            // Delete Image
+            Storage::delete('public/cover_images/'.$products->img5);
+        }
         $products->delete();
 
         // toastr()->success('Room Deleted Successfully');
@@ -471,7 +494,10 @@ class AdminController extends Controller
     public function setting()
     {
         $settings = Setting::all();
-        return view('admin.setting')->with('settings',$settings);
+        $payments = Payment::all();
+        $orders = Order::all();
+        $carts = Cart::all();
+        return view('admin.setting')->with('settings',$settings)->with('payments',$payments)->with('orders',$orders)->with('carts',$carts);
 
     }
 
@@ -491,5 +517,33 @@ class AdminController extends Controller
         $cost->save();
 
         return back()->with('status','Shipping Cost Added...');
+    }
+
+    public function paymenttypestore(Request $request){
+
+        $this->validate($request,[
+            'paymentname' => 'required'
+      
+            
+
+        ]);
+
+
+
+        $payment = new Payment();
+        $payment->payment_name = $request->input('paymentname');
+        $payment->save();
+
+        return back()->with('status','New Payment Type Added...');
+    }
+
+
+    public function orders()
+    {
+
+        $orders = Order::all();
+
+        return view('admin.orders')->with('orders',$orders);
+
     }
 }

@@ -78,7 +78,7 @@
           
           
           
-          @foreach($category as $cat)
+          <!-- @foreach($category as $cat)
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
@@ -100,7 +100,7 @@
               </div>
             </div>
           </div>
-          @endforeach
+          @endforeach -->
           @foreach($category as $cat)
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -155,56 +155,8 @@
           </div>
         </div>
         @endforeach
-        <div class="col-sm-4">
-          <div class="product-image-wrapper">
-            <div class="single-products">
-              <div class="productinfo text-center">
-                <img src="images/home/product1.jpg" alt="" />
-                <h2>$56</h2>
-                <p>Easy Polo Black Edition</p>
-                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-              </div>
-              <div class="product-overlay">
-                <div class="overlay-content">
-                  <h2>$56</h2>
-                  <p>Easy Polo Black Edition</p>
-                  <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                </div>
-              </div>
-            </div>
-            <div class="choose">
-              <ul class="nav nav-pills nav-justified">
-                <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="product-image-wrapper">
-            <div class="single-products">
-              <div class="productinfo text-center">
-                <img src="images/home/product2.jpg" alt="" />
-                <h2>$56</h2>
-                <p>Easy Polo Black Edition</p>
-                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-              </div>
-              <div class="product-overlay">
-                <div class="overlay-content">
-                  <h2>$56</h2>
-                  <p>Easy Polo Black Edition</p>
-                  <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                </div>
-              </div>
-            </div>
-            <div class="choose">
-              <ul class="nav nav-pills nav-justified">
-                <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        
+        
         
         </div><!--features_items-->
         <div class="container">

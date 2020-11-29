@@ -42,6 +42,11 @@ Route::delete('/deleteproduct/{id}','AdminController@productdelete');
 Route::get('/setting','AdminController@setting');
 Route::put('/storecost','AdminController@shippingcoststore');
 
+
+Route::put('/storepayment','AdminController@paymenttypestore');
+
+
+Route::get('/orders','AdminController@orders');
 });
 
 
@@ -57,6 +62,7 @@ Route::delete('/cartdelete/{id}','IndexController@deletecart');
 
 
 Route::get('/checkout','IndexController@checkout');
+Route::put('/storecheckout','IndexController@checkoutstore');
 });
 
 Auth::routes();

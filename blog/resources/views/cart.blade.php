@@ -32,7 +32,7 @@
 						@php
 						$total_price = 0;
 						@endphp
-						@foreach($cart as $carts)
+						@foreach(App\Cart::first()->totalCarts() as $carts)
 						@if(Auth::user()->name == $carts->user->name)
 						
 						
@@ -109,9 +109,7 @@
 					<div class="col-md-12">
 						<div class="total_area">
 							<ul>
-								<li>Cart Sub Total <span>{{$total_price}} BDT</span></li>
-								<li>Eco Tax <span>$2</span></li>
-								<li>Shipping Cost <span>Free</span></li>
+								
 								<li>Total <span>{{$total_price}} BDT</span></li>
 							</ul>
 							<a class="btn btn-default update" href="/checkout">Check Out</a>

@@ -23,7 +23,8 @@ class Cart extends Model
     {
     	
     		$carts = Cart::where('user_id', Auth::id())
-                      ->get();
+                        ->where('order_id', NULL)
+                        ->get();
     	
 
     	$total_items = 0;
@@ -35,5 +36,17 @@ class Cart extends Model
 
     	return $total_items;
     	
+    }
+
+    public function totalCarts()
+    {
+        
+        $carts = Cart::where('user_id', Auth::id())
+
+                ->where('order_id', NULL)
+                ->get();
+
+        return $carts;
+        
     }
 }

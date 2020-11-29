@@ -83,7 +83,16 @@
                   <h2>{{$cat->price}}</h2>
                   <a href="/productdetails/{{$cat->id}}"><p>{{$cat->name}}</p></a>
                   
-                  <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                  <form action="/storecart" method="POST">
+              {{ csrf_field() }}
+              {{ method_field('PUT') }}
+                <input type="hidden" class="form-control" name="product_id" value="{{$cat->id}}">
+              
+              <button type="submit" class="btn btn-fefault cart">
+              <i class="fa fa-shopping-cart"></i>
+              Add to cart
+              </button>
+            </form>
                 </div>
                 
               </div>

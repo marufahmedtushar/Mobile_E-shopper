@@ -101,6 +101,12 @@
                                     <span>Settings</span>
                                 </a>
                             </li>
+
+                            <li class="{{ 'orders' == request()->path() ? 'active' : '' }}">
+                                <a class="" href="/orders"><i class=""></i>
+                                    <span>Orders</span>
+                                </a>
+                            </li>
                         
                         </ul>
                     </nav>
