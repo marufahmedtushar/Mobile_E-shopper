@@ -38,6 +38,7 @@
 
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.min.css">
 
+  
 
   
 
@@ -96,17 +97,19 @@
                                 </a>
                             </li>
 
+                            <li class="{{ 'orders' == request()->path() ? 'active' : '' }}">
+                                <a class="" href="/orders"><i class="fas fa-cart-arrow-down"></i>
+                                    <span>Orders</span>
+                                </a>
+                            </li>
+
                             <li class="{{ 'setting' == request()->path() ? 'active' : '' }}">
                                 <a class="" href="/setting"><i class="fas fa-cogs"></i>
                                     <span>Settings</span>
                                 </a>
                             </li>
 
-                            <li class="{{ 'orders' == request()->path() ? 'active' : '' }}">
-                                <a class="" href="/orders"><i class=""></i>
-                                    <span>Orders</span>
-                                </a>
-                            </li>
+                            
                         
                         </ul>
                     </nav>
@@ -562,6 +565,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.full.min.js"></script>
+
+   
     @yield('js')
 </body>
 

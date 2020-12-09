@@ -63,6 +63,8 @@ Route::delete('/cartdelete/{id}','IndexController@deletecart');
 
 Route::get('/checkout','IndexController@checkout');
 Route::put('/storecheckout','IndexController@checkoutstore');
+
+Route::put('/rating/{product}','IndexController@ratingstore');
 });
 
 Auth::routes();

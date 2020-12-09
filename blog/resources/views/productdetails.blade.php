@@ -110,7 +110,7 @@
 					<img src="images/product-details/new.jpg" class="newarrival" alt="" />
 					<h2>{{$product->name}}</h2>
 					<p>Web ID:{{$product->id}}</p>
-					<img src="images/product-details/rating.png" alt="" />
+					
 					<span>
 						<form action="/storecart" method="POST">
 							{{ csrf_field() }}
@@ -118,18 +118,18 @@
 							<span>{{$product->price}}</span>
 							<br>
 							
-									
-									<div class="input-group plus-minus-input">
-										<label>Quantity:</label>
-										<button type="button" class="button hollow circle" data-quantity="minus" data-field="quantity">
-										<i class="fa fa-minus" aria-hidden="true"></i>
-										</button>
-										<input class="input-group-field" type="number" name="quantity" value="1">
-										<button type="button" class="button hollow circle" data-quantity="plus" data-field="quantity">
-										<i class="fa fa-plus" aria-hidden="true"></i>
-										</button>
-									</div>
-								
+							
+							<div class="input-group plus-minus-input">
+								<label>Quantity:</label>
+								<button type="button" class="button hollow circle" data-quantity="minus" data-field="quantity">
+								<i class="fa fa-minus" aria-hidden="true"></i>
+								</button>
+								<input class="input-group-field" type="number" name="quantity" value="1">
+								<button type="button" class="button hollow circle" data-quantity="plus" data-field="quantity">
+								<i class="fa fa-plus" aria-hidden="true"></i>
+								</button>
+							</div>
+							
 							
 							<!-- product qty -->
 							<!-- Change the `data-field` of buttons and `name` of input field's for multiple plus minus buttons-->
@@ -149,6 +149,12 @@
 							</button>
 						</form>
 					</span>
+
+					
+
+					<p><b>Rating: </b><span class="badge badge-pill badge-primary"> {{$new}} </span>  <i class="fas fa-star" style="color: #F39C12;"></i></p>
+					
+					
 					
 					<p><b>Availability:</b> @if($product->status == '1')
 						<span class="badge badge-pill badge-success">Available</span>
@@ -193,169 +199,256 @@
 				</div>
 				</div><!--/product-details-->
 			</div>
-			<div class="category-tab shop-details-tab"><!--category-tab-->
-			<div class="col-sm-12">
-				<ul class="nav nav-tabs">
-					<li><a href="#details" data-toggle="tab">Recomended Items</a></li>
-					<li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
+			<div class="response-area">
+				<h2>{{ $product->ratings()->count() }} RESPONSES</h2>
+				@foreach($product->ratings as $rating)
+				<ul class="media-list">
+					<li class="media">
+						
+						<a class="pull-left" href="#">
+							<img class="media-object" src="{{asset('images/blog/user.png')}}" alt="" style="height: 100px; width: 100px;">
+						</a>
+						<div class="media-body">
+							<ul class="sinlge-post-meta">
+								<li><i class="fa fa-user"></i>{{$rating->user->name}}</li>
+								<li><i class="fa fa-clock-o"></i>{{$rating->created_at->diffForHumans()}}</li>
+							</ul>
+							<p>{{$rating->comment}}</p>
+							@if($rating->rating == 5)
+							<label class="form-check-label px-3">
+								<i class="fas fa-star" style="color: #F39C12;"></i>
+								<i class="fas fa-star" style="color: #F39C12;"></i>
+								<i class="fas fa-star" style="color: #F39C12;"></i>
+								<i class="fas fa-star" style="color: #F39C12;"></i>
+								<i class="fas fa-star" style="color: #F39C12;"></i>
+							</label>
+							@elseif($rating->rating == 4)
+							
+							<label class="form-check-label px-3">
+								<i class="fas fa-star" style="color: #F39C12;"></i>
+								<i class="fas fa-star" style="color: #F39C12;"></i>
+								<i class="fas fa-star" style="color: #F39C12;"></i>
+								<i class="fas fa-star" style="color: #F39C12;"></i>
+							</label>
+							@elseif($rating->rating == 3)
+							<label class="form-check-label px-3">
+								<i class="fas fa-star" style="color: #F39C12;"></i>
+								<i class="fas fa-star" style="color: #F39C12;"></i>
+								<i class="fas fa-star" style="color: #F39C12;"></i>
+							</label>
+							@elseif($rating->rating == 2)
+							<label class="form-check-label px-3">
+								<i class="fas fa-star" style="color: #F39C12;"></i>
+								<i class="fas fa-star" style="color: #F39C12;"></i>
+							</label>
+							@elseif($rating->rating == 1)
+							<label class="form-check-label px-3">
+								<i class="fas fa-star" style="color: #F39C12;"></i>
+							</label>
+							
+							@endif
+							
+						</div>
+					</li>
+					
+					
 				</ul>
-			</div>
-			<div class="tab-content">
-				<div class="tab-pane fade" id="details" >
-					<div class="col-md-12">
-						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-							<div class="carousel-inner">
-								<div class="item active">
-									@foreach($products as $prod)
-									
-									<div class="col-sm-3">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="/storage/cover_images/{{$prod->img1}}" alt="" style="height: 150px; width: 100px;" />
-													<h2>{{$prod->price}}</h2>
-													<a href="/productdetails/{{$prod->id}}"><p>{{$prod->name}}</p></a>
+				@endforeach
+				</div><!--/Response-area-->
+				<div class="category-tab shop-details-tab"><!--category-tab-->
+				<div class="col-sm-12">
+					<ul class="nav nav-tabs">
+						<li><a href="#details" data-toggle="tab">Recomended Items</a></li>
+						<li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
+					</ul>
+				</div>
+				<div class="tab-content">
+					<div class="tab-pane fade" id="details" >
+						<div class="col-md-12">
+							<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+								<div class="carousel-inner">
+									<div class="item active">
+										@foreach($products as $prod)
+										
+										<div class="col-sm-3">
+											<div class="product-image-wrapper">
+												<div class="single-products">
+													<div class="productinfo text-center">
+														<img src="/storage/cover_images/{{$prod->img1}}" alt="" style="height: 150px; width: 100px;" />
+														<h2>{{$prod->price}}</h2>
+														<a href="/productdetails/{{$prod->id}}"><p>{{$prod->name}}</p></a>
+													</div>
+												</div>
+											</div>
+										</div>
+										
+										@endforeach
+										
+										
+									</div>
+									<div class="item">
+										<div class="col-sm-3">
+											<div class="product-image-wrapper">
+												<div class="single-products">
+													<div class="productinfo text-center">
+														<img src="images/home/recommend1.jpg" alt="" />
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-3">
+											<div class="product-image-wrapper">
+												<div class="single-products">
+													<div class="productinfo text-center">
+														<img src="images/home/recommend2.jpg" alt="" />
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-3">
+											<div class="product-image-wrapper">
+												<div class="single-products">
+													<div class="productinfo text-center">
+														<img src="images/home/recommend3.jpg" alt="" />
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-									
-									@endforeach
-									
-									
 								</div>
-								<div class="item">
-									<div class="col-sm-3">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-3">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend2.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-3">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend3.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+								<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+									<i class="fa fa-angle-left"></i>
+								</a>
+								<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+									<i class="fa fa-angle-right"></i>
+								</a>
 							</div>
-							<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-								<i class="fa fa-angle-left"></i>
-							</a>
-							<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-								<i class="fa fa-angle-right"></i>
-							</a>
 						</div>
 					</div>
-				</div>
-				
-				
-				
-				<div class="tab-pane fade active in" id="reviews" >
-					<div class="col-sm-12">
-						<ul>
-							<li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-							<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-							<li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-						</ul>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-						<p><b>Write Your Review</b></p>
-						
-						<form action="#">
-							<span>
-								<input type="text" placeholder="Your Name"/>
-								<input type="email" placeholder="Email Address"/>
-							</span>
-							<textarea name="" ></textarea>
-							<b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
-							<button type="button" class="btn btn-default pull-right">
-							Submit
-							</button>
-						</form>
+					
+					
+					
+					<div class="tab-pane fade active in" id="reviews" >
+						<div class="col-sm-12">
+							
+							
+							
+							
+							
+							<form action="/rating/{{$product->id}}" method="POST">
+								{{ csrf_field() }}
+								{{ method_field('PUT') }}
+								
+								
+								<div class="row">
+									<div class="col-sm-8">
+										<div class="form-group">
+											<label>Rating</label>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group pull-right">
+											<div class="rateyo" id= "rating"></div>
+											<span class='result'></span>
+											<input type="hidden" name="rating">
+										</div>
+									</div>
+									
+								</div>
+								
+								
+								
+								
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<p><b>Write Your Review</b></p>
+											<textarea type="text" name="comment" class="" placeholder="Body of Post" id="exampleFormControlTextarea1" rows="4"></textarea>
+										</div>
+									</div>
+								</div>
+								<button class="btn btn-default pull-right">Review</button>
+							</form>
+						</div>
 					</div>
+					
+					
 				</div>
+				</div><!--/category-tab-->
+				
 				
 			</div>
-			</div><!--/category-tab-->
 		</div>
-	</div>
-	
-	
-	@endsection
-	@section('js')
-	<script>
-	$('.value-plus').on('click', function(){
-	var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)+1;
-	divUpd.text(newVal);
-	});
-	$('.value-minus').on('click', function(){
-	var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)-1;
-	if(newVal>=1) divUpd.text(newVal);
-	});
-	function myFunction(smallImg)
-	{
-		var fullImg = document.getElementById("imageBox");
-		fullImg.src = smallImg.src;
-	}
-	jQuery(document).ready(function(){
-	// This button will increment the value
-	$('[data-quantity="plus"]').click(function(e){
-	// Stop acting like a button
-	e.preventDefault();
-	// Get the field name
-	fieldName = $(this).attr('data-field');
-	// Get its current value
-	var currentVal = parseInt($('input[name='+fieldName+']').val());
-	// If is not undefined
-	if (!isNaN(currentVal)) {
-	// Increment
-	$('input[name='+fieldName+']').val(currentVal + 1);
-	} else {
-	// Otherwise put a 0 there
-	$('input[name='+fieldName+']').val(0);
-	}
-	});
-	// This button will decrement the value till 0
-	$('[data-quantity="minus"]').click(function(e) {
-	// Stop acting like a button
-	e.preventDefault();
-	// Get the field name
-	fieldName = $(this).attr('data-field');
-	// Get its current value
-	var currentVal = parseInt($('input[name='+fieldName+']').val());
-	// If it isn't undefined or its greater than 0
-	if (!isNaN(currentVal) && currentVal > 0) {
-	// Decrement one
-	$('input[name='+fieldName+']').val(currentVal - 1);
-	} else {
-	// Otherwise put a 0 there
-	$('input[name='+fieldName+']').val(0);
-	}
-	});
-	});
-	</script>
-	@endsection
+		
+		
+		@endsection
+		@section('js')
+		<script>
+		$('.value-plus').on('click', function(){
+		var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)+1;
+		divUpd.text(newVal);
+		});
+		$('.value-minus').on('click', function(){
+		var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)-1;
+		if(newVal>=1) divUpd.text(newVal);
+		});
+		function myFunction(smallImg)
+		{
+			var fullImg = document.getElementById("imageBox");
+			fullImg.src = smallImg.src;
+		}
+		jQuery(document).ready(function(){
+		// This button will increment the value
+		$('[data-quantity="plus"]').click(function(e){
+		// Stop acting like a button
+		e.preventDefault();
+		// Get the field name
+		fieldName = $(this).attr('data-field');
+		// Get its current value
+		var currentVal = parseInt($('input[name='+fieldName+']').val());
+		// If is not undefined
+		if (!isNaN(currentVal)) {
+		// Increment
+		$('input[name='+fieldName+']').val(currentVal + 1);
+		} else {
+		// Otherwise put a 0 there
+		$('input[name='+fieldName+']').val(0);
+		}
+		});
+		// This button will decrement the value till 0
+		$('[data-quantity="minus"]').click(function(e) {
+		// Stop acting like a button
+		e.preventDefault();
+		// Get the field name
+		fieldName = $(this).attr('data-field');
+		// Get its current value
+		var currentVal = parseInt($('input[name='+fieldName+']').val());
+		// If it isn't undefined or its greater than 0
+		if (!isNaN(currentVal) && currentVal > 0) {
+		// Decrement one
+		$('input[name='+fieldName+']').val(currentVal - 1);
+		} else {
+		// Otherwise put a 0 there
+		$('input[name='+fieldName+']').val(0);
+		}
+		});
+		});
+		$(function () {
+		$(".rateyo").rateYo().on("rateyo.change", function (e, data) {
+		var rating = data.rating;
+		$(this).parent().find('.score').text('score :'+ $(this).attr('data-rateyo-score'));
+		$(this).parent().find('.result');
+		$(this).parent().find('input[name=rating]').val(rating); //add rating value to input field
+		});
+		});
+		</script>
+		@endsection

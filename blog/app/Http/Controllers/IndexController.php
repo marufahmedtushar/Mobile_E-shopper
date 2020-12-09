@@ -11,6 +11,7 @@ use App\Product;
 use App\Cart;
 use App\Payment;
 use App\Order;
+use App\Rating;
 class IndexController extends Controller
 {
     public function index()
@@ -54,7 +55,17 @@ class IndexController extends Controller
         $product = Product::find($id);
         $categories = Category::all();
         $products = Product::all();
-        return view('productdetails')->with('product',$product)->with('categories',$categories)->with('products',$products);
+        $ratings = Rating::all();
+        $value = DB::table('ratings')
+                ->where('product_id',$id) 
+                ->avg('rating');
+        $new = $value;
+        
+        return view('productdetails')
+        ->with('product',$product)
+        ->with('categories',$categories)
+        ->with('products',$products)
+        ->with('ratings',$ratings)->with('new',$new);
     }
 
      public function cartstore(Request $request)
@@ -171,5 +182,24 @@ class IndexController extends Controller
 
 
 
+    }
+
+
+    public function ratingstore(Request $request,$product)
+    {
+        $this->validate($request,[
+        'comment' => 'required',
+        'rating' => 'required'
+    ]);
+
+
+    $rating = new Rating();
+    $rating-> user_id = Auth::id();
+    $rating-> product_id = $product;
+    $rating->rating = $request->rating;
+    $rating->comment = $request->comment;
+    $rating->save();
+
+    return redirect()->back()->with('status','Your Review Successfully Added');
     }
 }

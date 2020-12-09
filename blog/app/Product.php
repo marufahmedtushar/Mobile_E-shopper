@@ -22,4 +22,10 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Category')->withTimestamps();
     }
+
+    public function ratings()
+    {
+        return $this->hasMany('App\Rating');
+    }
+
 }
