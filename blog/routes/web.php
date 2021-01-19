@@ -47,6 +47,8 @@ Route::put('/storepayment','AdminController@paymenttypestore');
 
 
 Route::get('/orders','AdminController@orders');
+
+Route::get('/ratings','AdminController@ratings');
 });
 
 

@@ -152,7 +152,7 @@
 
 					
 
-					<p><b>Rating: </b><span class="badge badge-pill badge-primary"> {{$new}} </span>  <i class="fas fa-star" style="color: #F39C12;"></i></p>
+					<p><b>Rating:  {{$new}} </b>  <i class="fas fa-star" style="color: #F39C12;"></i></p>
 					
 					
 					

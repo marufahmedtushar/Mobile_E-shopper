@@ -103,6 +103,12 @@
                                 </a>
                             </li>
 
+                            <li class="{{ 'ratings' == request()->path() ? 'active' : '' }}">
+                                <a class="" href="/ratings"><i class="fas fa-star"></i>
+                                    <span>Reviews</span>
+                                </a>
+                            </li>
+
                             <li class="{{ 'setting' == request()->path() ? 'active' : '' }}">
                                 <a class="" href="/setting"><i class="fas fa-cogs"></i>
                                     <span>Settings</span>

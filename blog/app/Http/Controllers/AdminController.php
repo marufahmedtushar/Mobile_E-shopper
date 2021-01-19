@@ -11,6 +11,7 @@ use App\Setting;
 use App\Payment;
 use App\Order;
 use App\Cart;
+use App\Rating;
 class AdminController extends Controller
 {
     public function dashboard()
@@ -544,6 +545,15 @@ class AdminController extends Controller
         $orders = Order::all();
 
         return view('admin.orders')->with('orders',$orders);
+
+    }
+
+    public function ratings()
+    {
+
+        $ratings = Rating::all();
+
+        return view('admin.rating')->with('ratings',$ratings);
 
     }
 }
