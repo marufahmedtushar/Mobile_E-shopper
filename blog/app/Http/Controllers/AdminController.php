@@ -17,7 +17,22 @@ class AdminController extends Controller
     public function dashboard()
     {
 
-        return view('admin.dashboard');
+      
+        $totalusers = User::count();
+        $totalcategories = Category::count();
+        $totalproducts = Product::count();
+        $totalorder = Order::count();
+        $totalreviews = Rating::count();
+     
+        
+
+        return view('admin.dashboard',[
+            'totalusers'=>$totalusers,
+            'totalcategories'=>$totalcategories,
+            'totalproducts'=>$totalproducts,
+            'totalorder'=>$totalorder,
+            'totalreviews'=>$totalreviews,
+        ]);
 
     }
 

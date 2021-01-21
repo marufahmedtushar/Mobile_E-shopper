@@ -7,65 +7,82 @@
 @section('name','Dashboard')
 @section('content')
 
-<div class="sales-report-area sales-style-two">
-                    <div class="row">
-                        <div class="col-xl-3 col-ml-3 col-md-6 mt-5">
-                            <div class="single-report">
-                                <div class="s-sale-inner pt--30 mb-3">
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <h4 class="header-title mb-0">Product Sold</h4>
-                                        <select class="custome-select border-0 pr-3">
-                                            <option selected="">Last 7 Days</option>
-                                            <option value="0">Last 7 Days</option>
-                                        </select>
+<div class="main-content-inner">
+                <div class="row">
+                    <!-- seo fact area start -->
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-md-4 mt-5 mb-3">
+                                <div class="card">
+                                    <div class="seo-fact sbg1">
+                                        <div class="p-4 d-flex justify-content-between align-items-center">
+                                            <div class="seofct-icon"><i class="fas fa-user"></i> Total Users</div>
+                                            <h2>{{$totalusers}}</h2>
+                                        </div>
+                                        
                                     </div>
                                 </div>
-                                <canvas id="coin_sales4" height="100"></canvas>
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-ml-3 col-md-6 mt-5">
-                            <div class="single-report">
-                                <div class="s-sale-inner pt--30 mb-3">
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <h4 class="header-title mb-0">Gross Profit</h4>
-                                        <select class="custome-select border-0 pr-3">
-                                            <option selected="">Last 7 Days</option>
-                                            <option value="0">Last 7 Days</option>
-                                        </select>
+
+                            
+                            <div class="col-md-4 mt-5 mb-3">
+                                <div class="card">
+                                    <div class="seo-fact sbg2">
+                                        <div class="p-4 d-flex justify-content-between align-items-center">
+                                            <div class="seofct-icon"><i class="fas fa-tags"></i>Total Categories</div>
+                                            <h2>{{$totalcategories}}</h2>
+                                        </div>
+                                      
                                     </div>
                                 </div>
-                                <canvas id="coin_sales5" height="100"></canvas>
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-ml-3 col-md-6  mt-5">
-                            <div class="single-report">
-                                <div class="s-sale-inner pt--30 mb-3">
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <h4 class="header-title mb-0">Orders</h4>
-                                        <select class="custome-select border-0 pr-3">
-                                            <option selected="">Last 7 Days</option>
-                                            <option value="0">Last 7 Days</option>
-                                        </select>
+                            
+                            <div class="col-md-4 mt-5 mb-3">
+                                <div class="card">
+                                    <div class="seo-fact sbg3">
+                                        <div class="p-4 d-flex justify-content-between align-items-center">
+                                            <div class="seofct-icon"><i class="fas fa-cubes"></i> Total Products</div>
+                                            <h2>{{$totalproducts}}</h2>
+                                        </div>
+                                        
                                     </div>
                                 </div>
-                                <canvas id="coin_sales6" height="100"></canvas>
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-ml-3 col-md-6 mt-5">
-                            <div class="single-report">
-                                <div class="s-sale-inner pt--30 mb-3">
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <h4 class="header-title mb-0">New Coustomers</h4>
-                                        <select class="custome-select border-0 pr-3">
-                                            <option selected="">Last 7 Days</option>
-                                            <option value="0">Last 7 Days</option>
-                                        </select>
+
+                            <div class="col-md-4 mt-5 mb-3">
+                                <div class="card">
+                                    <div class="seo-fact sbg4">
+                                        <div class="p-4 d-flex justify-content-between align-items-center">
+                                            <div class="seofct-icon"><i class="fas fa-cart-arrow-down"></i> Total Order</div>
+                                            <h2>{{$totalorder}}</h2>
+                                        </div>
+                                        
                                     </div>
                                 </div>
-                                <canvas id="coin_sales7" height="100"></canvas>
+                            </div>
+
+                            <div class="col-md-4 mt-5 mb-3">
+                                <div class="card">
+                                    <div class="seo-fact sbg1">
+                                        <div class="p-4 d-flex justify-content-between align-items-center">
+                                            <div class="seofct-icon"><i class="fas fa-star"></i> Total Reviews</div>
+                                            <h2>{{$totalreviews}}</h2>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <!-- seo fact area end -->
+                    
+                    
+                    
+                    
+                    
+                    
                 </div>
-
+            </div>
+        </div>
+        <!-- main content area end -->
 @endsection
