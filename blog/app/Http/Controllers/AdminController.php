@@ -563,6 +563,17 @@ class AdminController extends Controller
 
     }
 
+
+    public function orderdelete(Request $request)
+    {
+
+        $orders = Order::findOrFail($request->order_id);
+        $orders->delete();
+
+        return back()->with('status','Order Deleted...');
+
+    }
+
     public function ratings()
     {
 
@@ -571,4 +582,15 @@ class AdminController extends Controller
         return view('admin.rating')->with('ratings',$ratings);
 
     }
+
+     public function ratingdelete(Request $request)
+    {
+
+        $ratings = Rating::findOrFail($request->rat_id);
+        $ratings->delete();
+
+        return back()->with('status','Rating Deleted...');
+
+    }
+
 }

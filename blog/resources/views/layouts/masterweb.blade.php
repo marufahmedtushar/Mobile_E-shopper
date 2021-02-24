@@ -135,7 +135,10 @@
 
       <div class="col-sm-6">
         <div class="search_box">
-          <input type="text" placeholder="Search"/>
+          <form action="/search" method="get"  role="search">
+                              {{ csrf_field() }}
+          <input type="text" placeholder="Search" name="q"/>
+          </form>
         </div>
       </div>
     </div>
@@ -167,7 +170,7 @@
         <div class="col-sm-2">
           <div class="companyinfo">
             <h2><span>e</span>-shopper</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+            <p></p>
           </div>
         </div>
         <div class="col-sm-7">

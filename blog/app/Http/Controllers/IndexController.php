@@ -202,4 +202,37 @@ class IndexController extends Controller
 
     return redirect()->back()->with('status','Your Review Successfully Added');
     }
+
+
+    public function search(){
+    
+    $q = $_GET['q'];
+    
+ 
+        
+        if($q !=""){
+
+
+            $search = Product::where('name','LIKE','%'.$q.'%')->get();
+            // $search = DB::table('post2_tag')
+            //                     ->join('tags', 'tags.id', 'post2_tag.tag_id')
+            //                     ->select('tags.*')
+            //                     ->where('tags.name', 'like','%'.$q.'%')
+            //                     ->get();
+            // $search = DB::table('users')
+            //         ->join('post2s', 'post2s.user_id', 'users.id')
+            //         ->join('post2_tag', 'post2_tag.post2_id', 'post2s.id')
+            //         ->join('tags', 'tags.id', 'post2_tag.tag_id')
+            //         ->select('post2s.*', 'tags.name','users.*','post2_tag.*')
+            //         ->where('post2s.title', 'like','%'.$q.'%')
+            //         ->orWhere('tags.name', 'like','%'.$q.'%')
+            //         ->get();
+            return view('search')->with('search',$search);
+
+
+        }
+
+
+}
+
 }

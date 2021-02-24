@@ -30,11 +30,42 @@
               <td>
                 <ul class="d-flex justify-content-center">
                   <li class="mr-3"><a href="#" class="text-info" data-toggle="modal" data-target="#ratview" data-id="{{$rat->id}}"data-ratid="{{$rat->id}}" data-name="{{$rat->user->name}}"data-email="{{$rat->user->email}}"data-rateddevice="{{$rat->product->name}}"data-rating="{{$rat->rating}}"data-comment="{{$rat->comment}}" ><i class="fa fa-eye"></i></a></li>
-                  <li><a href="#" class="text-danger "data-toggle="modal" data-target="#modal" >
+                  <li><a href="#" class="text-danger "data-toggle="modal" data-target="#danger" data-ratid="{{$rat->id}}" data-name="{{$rat->comment}}" >
                   <i class="fas fa-trash"></i></a></li>
                 </ul>
               </td>
             </tr>
+
+            <div class="modal  fade" id="danger">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-header bg-danger">
+                    <h4 class="modal-title">Delete Review</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form action="/deleterating/{{$rat->id}}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('delete') }}
+                    <div class="modal-body">
+                      <p>Are  You  Sure  to  Delete This Review</p>
+                      <input type="hidden" name="rat_id" id="rat_id">
+                      <div class="form-group">
+                        <input type="text" class="form-control"  id="name" style="border:3px solid #ffffff;border-radius:10px;">
+                      </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button class="btn btn-danger btn-sm toastrBillDelete">Delete </button>
+                    </div>
+                  </form>
+                  
+                </div>
+                <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
+            </div>
             @endforeach
             
           </tbody>
@@ -92,6 +123,8 @@
   
 </div>
 </div>
+
+
 @endsection
 @section('js')
 <script>
@@ -134,6 +167,16 @@ modal.find('.modal-body .division').text(division)
 modal.find('.modal-body .product_name').text(productname)
 modal.find('.modal-body .product_quantity').text(productquantity)
 modal.find('.modal-body .paymentid').text(paymentid)
+})
+
+
+  $('#danger').on('show.bs.modal', function (event) {
+var button = $(event.relatedTarget) // Button that triggered the modal
+var rat_id = button.data('ratid')
+var name = button.data('name')
+var modal = $(this)
+modal.find('.modal-body #rat_id').val(rat_id)
+modal.find('.modal-body #name').val(name)
 })
 </script>
 @endsection

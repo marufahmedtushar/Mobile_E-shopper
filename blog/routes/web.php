@@ -47,8 +47,10 @@ Route::put('/storepayment','AdminController@paymenttypestore');
 
 
 Route::get('/orders','AdminController@orders');
+Route::delete('/deleteorder/{id}','AdminController@orderdelete');
 
 Route::get('/ratings','AdminController@ratings');
+Route::delete('/deleterating/{id}','AdminController@ratingdelete');
 });
 
 
@@ -67,6 +69,7 @@ Route::get('/checkout','IndexController@checkout');
 Route::put('/storecheckout','IndexController@checkoutstore');
 
 Route::put('/rating/{product}','IndexController@ratingstore');
+
 });
 
 Auth::routes();
@@ -74,3 +77,4 @@ Auth::routes();
 Route::get('/', 'IndexController@index');
 Route::get('/categorydetails/{id}', 'IndexController@categorydetails');
 Route::get('/productdetails/{id}', 'IndexController@productdetails');
+Route::get('/search', 'IndexController@search');
